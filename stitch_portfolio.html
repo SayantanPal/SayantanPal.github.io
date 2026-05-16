@@ -1,0 +1,520 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Sayantan Pal | Cloud AI SDE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>:root {
+    --neon-purple: #7c3aed;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1)
+    }
+body {
+    background-color: #0c112e;
+    color: #dee0ff;
+    overflow-x: hidden;
+    font-family: "Inter", sans-serif
+    }
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCjpW1rTOWzSSmZ0wbhZAp2cZNqobbYh4Pz6akHhVdupfTb-LI5JEC3glYORUFqIVzknUmNp2ZNJqLHeIIVITcYObpdBeuJG2MqtefGRGLY-B3NQanso0b1KJLg4NVcxUla2uzBexKttrODZdx25za-xhrL8om7e7zywsMEe6Z5Q94xfReOhUhkuDcYgiz3bPa2PuLefiOFQXnxFtMVprSt5dI9rUyu5p100_RvA4d5zbZzyRz4V4ZeaWyB1k8pTt-UWrUWMr3W-n8);
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 9999
+    }
+.shimmer-btn {
+    position: relative;
+    overflow: hidden
+    }
+.shimmer-btn::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: rotate(45deg);
+    animation: shimmer 4s infinite
+    }
+@keyframes shimmer {
+    0% {
+        left: -150%;
+        } 100% {
+        left: 150%;
+        }
+    }
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1)
+    }
+.glass-card:hover {
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 30px -5px rgba(124, 58, 237, 0.3);
+    transform: translatey(-4px)
+    }
+.tech-stack-scroll {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent)
+    }
+.fade-up {
+    opacity: 0;
+    transform: translatey(30px);
+    transition: all 0.8s ease-out
+    }
+.fade-up.visible {
+    opacity: 1;
+    transform: translatey(0)
+    }
+.nav-link-active {
+    color: #d2bbff;
+    font-weight: 700;
+    border-bottom: 2px solid #7c3aed;
+    padding-bottom: 4px
+    }</style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#232846",
+                        "on-surface": "#dee0ff",
+                        "surface-container": "#191d3b",
+                        "on-surface-variant": "#ccc3d8",
+                        "primary": "#d2bbff",
+                        "primary-container": "#7c3aed",
+                        "on-primary-container": "#ede0ff",
+                        "background": "#0c112e",
+                        "surface-container-lowest": "#070b28",
+                        "secondary": "#89ceff",
+                        "surface": "#0c112e",
+                        "outline": "#958da1"
+                    },
+                    "spacing": {
+                        "section-gap": "128px",
+                        "container-max": "1200px",
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "gutter": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Space Grotesk"],
+                        "label-caps": ["Space Grotesk"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface" data-mode="connect">
+<div class="grain-overlay"></div>
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-[60px] border-b border-white/10 shadow-sm">
+<div class="flex justify-between items-center px-margin-mobile md:px-gutter py-4 max-w-container-max mx-auto">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">Sayantan Pal</span>
+<div class="hidden md:flex space-x-8 items-center">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#competencies">Competencies</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#impact">Impact</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#experience">Experience</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#education">Education</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#stack">Stack</a>
+<button class="px-6 py-2 bg-primary-container text-on-primary-container rounded-full font-bold hover:scale-105 transition-all shimmer-btn" onclick="toggleContact()">Contact</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="min-h-screen flex items-center justify-center pt-20 px-margin-mobile md:px-gutter relative overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 blur-[120px] rounded-full"></div>
+</div>
+<div class="max-w-container-max w-full z-10 text-center md:text-left flex flex-col md:flex-row items-center gap-16">
+<div class="flex-1 space-y-8 fade-up visible">
+<div class="inline-block px-4 py-1 rounded-full border border-primary/30 bg-primary/5 text-primary font-label-caps text-label-caps">AI Augmented<span class="" style="letter-spacing: 1.2px;"> Cloud </span>Software Development Engineer
+                </div>
+<h1 class="font-display-lg text-display-lg leading-tight">
+                    Sayantan <span class="text-primary">Pal</span>
+</h1>
+<p class="font-headline-md text-headline-md text-on-surface-variant max-w-2xl">
+                    Cloud AI SDE | Distributed Systems | Platform Engineering
+                </p>
+<p class="font-body-lg text-on-surface/80 max-w-2xl leading-relaxed">
+                    Engineered cloud-native microservices at scale — optimizing SaaS platforms serving 11+ country teams with measurable performance gains.
+                </p>
+<div class="flex flex-wrap gap-4 justify-center md:justify-start">
+<button class="px-10 py-4 bg-primary-container text-on-primary-container rounded-lg font-bold text-lg shimmer-btn hover:shadow-[0_0_20px_rgba(124,58,237,0.5)] transition-all" onclick="toggleContact()">
+                        Get In Touch
+                    </button>
+<button class="px-10 py-4 border border-outline/30 hover:border-primary/50 transition-colors rounded-lg font-bold text-lg glass-card" onclick="toggleProjects()">
+                        View Projects
+                    </button>
+</div>
+</div>
+<div class="flex-1 hidden lg:block fade-up visible" style="transition-delay: 200ms;">
+<div class="relative group">
+<div class="absolute -inset-4 bg-gradient-to-tr from-primary to-secondary opacity-20 blur-2xl group-hover:opacity-40 transition-opacity"></div>
+<img alt="Cyberpunk Technical Illustration" class="relative rounded-2xl border border-white/10 glass-card object-cover h-[500px] w-full" data-alt="A futuristic, high-tech digital workspace visual featuring floating translucent holographic code interfaces and neon-lit circuit board patterns. The aesthetic is deep midnight blue with vibrant electric purple and cyan light trails. The scene captures the essence of technical sophistication and advanced cloud engineering through a minimal, cinematic glassmorphism style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBClCD7CaxZJvI1EFUokm3Bq6wXjH6PV1MSfCWs31pHYEN59kiXLLSPXedwB36DU8JOAsfwU3ROHsa3I66GnHT8yWRs2qdd8LF5M0u3eAjzaFvOk8RsZO0qp5OwHLO6g97fwimhoZPQ3xvVUR6Ul0CzuvEJuIWPSjLULOPTox2KGhp5Rw2zq8cp1_iwKA7nN1Y1lVqzzeA8Lkx-IEalE_sfi_eJJsG-YEOBkZI3d-dQlVYTBHIjuaJUtUsN1ZxJJad1zZQGzjOUa0M">
+</div>
+</div>
+</div>
+</section>
+<!-- Impact Metrics Banner -->
+<section class="py-16 bg-surface-container-lowest relative overflow-hidden border-y border-white/5" id="impact">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+<div class="space-y-2 fade-up visible">
+<p class="font-display-lg text-4xl font-bold text-primary">4100→2</p>
+<p class="font-label-caps text-label-caps text-outline">API Calls Optimized</p>
+</div>
+<div class="space-y-2 fade-up visible" style="transition-delay: 100ms;">
+<p class="font-display-lg text-4xl font-bold text-secondary">70%</p>
+<p class="font-label-caps text-label-caps text-outline">Scalability Increase</p>
+</div>
+<div class="space-y-2 fade-up visible" style="transition-delay: 200ms;">
+<p class="font-display-lg text-4xl font-bold text-primary">99.99%</p>
+<p class="font-label-caps text-label-caps text-outline">Uptime Achieved</p>
+</div>
+<div class="space-y-2 fade-up visible" style="transition-delay: 300ms;">
+<p class="font-display-lg text-4xl font-bold text-secondary">€47K/mo</p>
+<p class="font-label-caps text-label-caps text-outline">Cost Savings</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Core Competencies -->
+<section class="py-section-gap px-margin-mobile md:px-gutter max-w-container-max mx-auto" id="competencies">
+<div class="text-center mb-16 fade-up visible">
+<h2 class="font-headline-lg text-headline-lg mb-4">Core Competencies</h2>
+<div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Col 1 -->
+<div class="glass-card p-8 rounded-2xl fade-up visible" style="transition-delay: 100ms;">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">cloud_done</span>
+<h3 class="font-headline-md text-2xl mb-6">Cloud Platform Engineering</h3>
+<ul class="space-y-4 text-on-surface-variant font-body-md">
+<li class="flex items-start gap-3"><span class="text-primary mt-1">▹</span> SAP BTP Neo &amp; CF Environments</li>
+<li class="flex items-start gap-3"><span class="text-primary mt-1">▹</span> SaaS Registry &amp; Multi-tenant Architecture</li>
+<li class="flex items-start gap-3"><span class="text-primary mt-1">▹</span> Automated CI/CD Pipeline Design</li>
+<li class="flex items-start gap-3"><span class="text-primary mt-1">▹</span> Infrastructure as Code (IaC)</li>
+</ul>
+</div>
+<!-- Col 2 -->
+<div class="glass-card p-8 rounded-2xl fade-up visible" style="transition-delay: 200ms;">
+<span class="material-symbols-outlined text-secondary text-4xl mb-6">settings_input_component</span>
+<h3 class="font-headline-md text-2xl mb-6">Backend &amp; Microservices</h3>
+<ul class="space-y-4 text-on-surface-variant font-body-md">
+<li class="flex items-start gap-3"><span class="text-secondary mt-1">▹</span> Java Spring Boot Ecosystem</li>
+<li class="flex items-start gap-3"><span class="text-secondary mt-1">▹</span> REST &amp; oData Enterprise APIs</li>
+<li class="flex items-start gap-3"><span class="text-secondary mt-1">▹</span> HANA DB Performance Tuning</li>
+<li class="flex items-start gap-3"><span class="text-secondary mt-1">▹</span> Type-safe SQL with JOOQ</li>
+</ul>
+</div>
+<!-- Col 3 -->
+<div class="glass-card p-8 rounded-2xl fade-up visible" style="transition-delay: 300ms;">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">analytics</span>
+<h3 class="font-headline-md text-2xl mb-6">Observability &amp; AI</h3>
+<ul class="space-y-4 text-on-surface-variant font-body-md">
+<li class="flex items-start gap-3"><span class="text-primary mt-1">▹</span> Dynatrace, Kibana &amp; Grafana Stack</li>
+<li class="flex items-start gap-3"><span class="text-primary mt-1">▹</span> AI-assisted Dev with LLMs</li>
+<li class="flex items-start gap-3"><span class="text-primary mt-1">▹</span> Chaos Engineering Principles</li>
+<li class="flex items-start gap-3"><span class="text-primary mt-1">▹</span> Real-time Monitoring &amp; Alerting</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Experience -->
+<section class="py-section-gap px-margin-mobile md:px-gutter bg-surface-container-low/30" id="experience">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row gap-12 items-start">
+<div class="md:w-1/3 fade-up visible">
+<h2 class="font-headline-lg text-headline-lg sticky top-32">Experience Timeline</h2>
+<p class="mt-4 text-outline font-body-md">Architecting robust systems for global enterprise scale at SAP Labs.</p>
+</div>
+<div class="md:w-2/3 space-y-12">
+<!-- Job 1 -->
+<div class="relative pl-8 border-l-2 border-primary/30 fade-up visible">
+<div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary shadow-[0_0_10px_#7c3aed]"></div>
+<div class="space-y-4">
+<span class="font-label-caps text-primary">Mar 2022 – Present</span>
+<h3 class="font-headline-md text-2xl text-on-surface">Java Spring Boot Backend Developer</h3>
+<p class="text-secondary font-medium">SAP Labs India</p>
+<div class="p-6 bg-surface-container rounded-xl border border-white/5">
+<p class="text-on-surface-variant mb-4">Leading core backend development for mission-critical SaaS platforms.</p>
+<div class="flex items-center gap-2 text-primary font-bold">
+<span class="material-symbols-outlined">trending_down</span>
+<span class="">Reduced API response from 1min 36sec to near-zero</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Job 2 -->
+<div class="relative pl-8 border-l-2 border-primary/30 fade-up visible" style="transition-delay: 100ms;">
+<div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-outline"></div>
+<div class="space-y-4">
+<span class="font-label-caps text-outline">Aug 2020 – Mar 2022</span>
+<h3 class="font-headline-md text-2xl text-on-surface">VT Scholar</h3>
+<p class="text-secondary font-medium">SAP Labs India</p>
+<div class="p-6 bg-surface-container rounded-xl border border-white/5">
+<p class="text-on-surface-variant mb-4">Built API automation suites and complex permissions framework for SAP Conversational AI.</p>
+<p class="text-primary-fixed-dim text-sm italic opacity-80">"Pioneered automated testing workflows for global NLP services."</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Education & Tech Stack -->
+<section class="py-section-gap px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+<div class="mb-24 fade-up visible" id="education">
+<h3 class="font-label-caps text-label-caps text-outline mb-8 text-center">Academic Excellence</h3>
+<div class="flex flex-wrap justify-center gap-6">
+<div class="flex items-center gap-4 px-6 py-4 glass-card rounded-full">
+<span class="material-symbols-outlined text-primary">school</span>
+<div>
+<p class="font-bold text-on-surface">BITS Pilani</p>
+<p class="text-xs text-outline">M.Tech Software Engineering (8.06/10)</p>
+</div>
+</div>
+<div class="flex items-center gap-4 px-6 py-4 glass-card rounded-full">
+<span class="material-symbols-outlined text-secondary">school</span>
+<div>
+<p class="font-bold text-on-surface">BPPIMT</p>
+<p class="text-xs text-outline">B.Tech CSE (9.10/10)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fade-up visible" id="stack">
+<h3 class="font-label-caps text-label-caps text-outline mb-12 text-center uppercase tracking-widest">Technological Arsenal</h3>
+<div class="tech-stack-scroll overflow-hidden py-10 relative">
+<div class="flex space-x-12 animate-marquee whitespace-nowrap items-center opacity-50 hover:opacity-100 transition-opacity">
+<!-- Duplicated for seamless loop -->
+<span class="font-headline-md text-2xl hover:text-primary transition-colors">Java</span>
+<span class="font-headline-md text-2xl hover:text-secondary transition-colors">Spring Boot</span>
+<span class="font-headline-md text-2xl hover:text-primary transition-colors">Python</span>
+<span class="font-headline-md text-2xl hover:text-secondary transition-colors">SQL</span>
+<span class="font-headline-md text-2xl hover:text-primary transition-colors">SAP BTP</span>
+<span class="font-headline-md text-2xl hover:text-secondary transition-colors">Cloud Foundry</span>
+<span class="font-headline-md text-2xl hover:text-primary transition-colors">HANA DB</span>
+<span class="font-headline-md text-2xl hover:text-secondary transition-colors">Kubernetes</span>
+<span class="font-headline-md text-2xl hover:text-primary transition-colors">Docker</span>
+<span class="font-headline-md text-2xl hover:text-secondary transition-colors">Dynatrace</span>
+<span class="font-headline-md text-2xl hover:text-primary transition-colors">Kibana</span>
+<span class="font-headline-md text-2xl hover:text-secondary transition-colors">Grafana</span>
+<span class="font-headline-md text-2xl hover:text-primary transition-colors">Git</span>
+<span class="font-headline-md text-2xl hover:text-secondary transition-colors">Jenkins</span>
+<span class="font-headline-md text-2xl hover:text-primary transition-colors">Postman</span>
+<!-- Duplicate -->
+<span class="font-headline-md text-2xl hover:text-primary transition-colors">Java</span>
+<span class="font-headline-md text-2xl hover:text-secondary transition-colors">Spring Boot</span>
+<span class="font-headline-md text-2xl hover:text-primary transition-colors">Python</span>
+<span class="font-headline-md text-2xl hover:text-secondary transition-colors">SQL</span>
+<span class="font-headline-md text-2xl hover:text-primary transition-colors">SAP BTP</span>
+<span class="font-headline-md text-2xl hover:text-secondary transition-colors">Cloud Foundry</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-section-gap bg-surface-container-lowest border-t border-white/5">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-gutter max-w-container-max mx-auto space-y-8 md:space-y-0">
+<div class="text-center md:text-left">
+</div>
+<div class="flex gap-8">
+<a class="text-outline hover:text-primary transition-all duration-300 transform hover:scale-110" href="https://linkedin.com/in/sayantan-pal-developer" target="_blank">LinkedIn</a>
+<a class="text-outline hover:text-primary transition-all duration-300 transform hover:scale-110" href="https://github.com/sayantan-pal-developer" target="_blank">GitHub</a>
+
+<a class="text-outline hover:text-primary transition-all duration-300 transform hover:scale-110" href="mailto:sayantan.pal.jobs@gmail.com">Email</a>
+</div>
+</div>
+</footer>
+<!-- Contact Modal -->
+<div class="fixed inset-0 z-[100] hidden items-center justify-center p-6" id="contact-modal">
+<div class="absolute inset-0 bg-background/80 backdrop-blur-md" onclick="toggleContact()"></div>
+<div class="relative glass-card p-10 rounded-3xl max-w-lg w-full transform transition-all duration-500 scale-95 opacity-0" id="modal-content">
+<div class="flex justify-between items-start mb-8">
+<h2 class="font-headline-md text-3xl">Let's Connect</h2>
+<button class="text-outline hover:text-on-surface" onclick="toggleContact()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="space-y-6">
+<div class="flex items-center gap-4 p-4 rounded-xl bg-surface-container border border-white/5 hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-primary">mail</span>
+<div>
+<p class="text-xs text-outline uppercase font-bold">Email</p>
+<p class="text-on-surface select-all">sayantan.pal.jobs@gmail.com</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-xl bg-surface-container border border-white/5 hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-primary">call</span>
+<div>
+<p class="text-xs text-outline uppercase font-bold">Phone</p>
+<p class="text-on-surface select-all">+91-7003565208</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-xl bg-surface-container border border-white/5 hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-primary">link</span>
+<div>
+<p class="text-xs text-outline uppercase font-bold">LinkedIn</p>
+<p class="text-on-surface">in/sayantan-pal-developer</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Projects Modal -->
+<div class="fixed inset-0 z-[100] hidden items-center justify-center p-6" id="projects-modal">
+<div class="absolute inset-0 bg-background/80 backdrop-blur-md" onclick="toggleProjects()"></div>
+<div class="relative glass-card p-10 rounded-3xl max-w-2xl w-full transform transition-all duration-500 scale-95 opacity-0 max-h-[90vh] overflow-y-auto" id="projects-modal-content">
+<div class="flex justify-between items-start mb-8">
+<h2 class="font-headline-md text-3xl">Projects</h2>
+<button class="text-outline hover:text-on-surface transition-colors" onclick="toggleProjects()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="space-y-6">
+<!-- Project 1 -->
+<div class="p-6 rounded-2xl bg-surface-container border border-white/5 hover:border-primary/50 transition-all duration-300">
+<h3 class="font-headline-md text-xl text-primary mb-2">SAP Innovator's Challenge Hackathon 2k21 (Farmer's Friend)</h3>
+<div class="flex flex-wrap gap-2 text-sm font-label-caps text-outline mb-4">
+<span class="">SAP Labs India Pvt Ltd</span>
+<span class="">•</span>
+<span class="">Apr 2021 - Oct 2021</span>
+</div>
+<p class="text-on-surface-variant font-body-md leading-relaxed">Developed ML code and integrated end-to-end 3 platforms: SAPUI5, SAP Business Intelligence (BI) Platform, SAP Analytics Cloud (SAC) Platform.</p>
+</div>
+<!-- Project 2 -->
+<div class="p-6 rounded-2xl bg-surface-container border border-white/5 hover:border-primary/50 transition-all duration-300">
+<h3 class="font-headline-md text-xl text-primary mb-2">InnoVision Hackathon 2k21 (Validation of Warranty Claims)</h3>
+<div class="flex flex-wrap gap-2 text-sm font-label-caps text-outline mb-4">
+<span class="">SAP Labs India Pvt Ltd</span>
+<span class="">•</span>
+<span class="">Apr 2021 - May 2021</span>
+</div>
+<p class="text-on-surface-variant font-body-md leading-relaxed">Developed and deployed mtar app of SAP Cloud Platform Business Rules to create domain and business rules to be deployed on on-prem existing ABAB application using Cloud connector service and explored CPBR services.</p>
+</div>
+</div>
+</div>
+</div>
+<script>
+        // Intersection Observer for fade-up animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Contact Modal Logic
+        function toggleContact() {
+            const modal = document.getElementById('contact-modal');
+            const content = document.getElementById('modal-content');
+            
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => {
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            } else {
+                content.classList.add('scale-95', 'opacity-0');
+                content.classList.remove('scale-100', 'opacity-100');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 500);
+            }
+        }
+
+        // Projects Modal Logic
+        function toggleProjects() {
+            const modal = document.getElementById('projects-modal');
+            const content = document.getElementById('projects-modal-content');
+            
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => {
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            } else {
+                content.classList.add('scale-95', 'opacity-0');
+                content.classList.remove('scale-100', 'opacity-100');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 500);
+            }
+        }
+
+        // Tech stack marquee animation via JS for smoother control
+        const marquee = document.querySelector('.animate-marquee');
+        let position = 0;
+        function step() {
+            position -= 1;
+            if (position < -marquee.scrollWidth / 2) {
+                position = 0;
+            }
+            marquee.style.transform = `translateX(${position}px)`;
+            requestAnimationFrame(step);
+        }
+        // requestAnimationFrame(step); // Uncomment if tailwind animation is not used
+
+        // Active Nav Logic
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('nav-link-active');
+                if (link.getAttribute('href').includes(current) && current !== '') {
+                    link.classList.add('nav-link-active');
+                }
+            });
+        });
+    </script>
+<style>
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 30s linear infinite;
+            display: flex;
+            width: max-content;
+        }
+    </style>
+
+
+</body></html>

@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --neon-purple: #7c3aed;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  background-color: #0c112e;
+  color: #dee0ff;
+  overflow-x: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCjpW1rTOWzSSmZ0wbhZAp2cZNqobbYh4Pz6akHhVdupfTb-LI5JEC3glYORUFqIVzknUmNp2ZNJqLHeIIVITcYObpdBeuJG2MqtefGRGLY-B3NQanso0b1KJLg4NVcxUla2uzBexKttrODZdx25za-xhrL8om7e7zywsMEe6Z5Q94xfReOhUhkuDcYgiz3bPa2PuLefiOFQXnxFtMVprSt5dI9rUyu5p100_RvA4d5zbZzyRz4V4ZeaWyB1k8pTt-UWrUWMr3W-n8);
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-btn::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: rotate(45deg);
+  animation: shimmer 4s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -150%; }
+  100% { left: 150%; }
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: var(--neon-purple);
+  box-shadow: 0 0 30px -5px rgba(124, 58, 237, 0.3);
+  transform: translateY(-4px);
+}
+
+.tech-stack-scroll {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-link-active {
+  color: #d2bbff;
+  font-weight: 700;
+  border-bottom: 2px solid #7c3aed;
+  padding-bottom: 4px;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+  display: flex;
+  width: max-content;
+}
